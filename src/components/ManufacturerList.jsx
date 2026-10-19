@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedBrand, fetchAnalogues } from '../store/partsSlice';
 
-const ManufacturerList = () => {
+const ManufacturerList = forwardRef(({ onBrandSelect }, ref) => {
   const dispatch = useDispatch();
   const { manufacturers, loading, number } = useSelector((state) => state.parts);
 
@@ -11,6 +11,9 @@ const ManufacturerList = () => {
 
     try {
       await dispatch(fetchAnalogues({ number, brand }));
+      if (onBrandSelect) {
+        onBrandSelect();
+      }
     } catch (err) {
       console.error('Failed to load analogues:', err);
     }
@@ -21,7 +24,7 @@ const ManufacturerList = () => {
   }
 
   return (
-    <div className="card mb-4">
+    <div id="manufacturers-section" ref={ref} className="card mb-4">
       <div className="card-body">
         <h5 className="card-title">Найденные производители</h5>
         <div className="list-group">
@@ -45,6 +48,8 @@ const ManufacturerList = () => {
       </div>
     </div>
   );
-};
+});
+
+ManufacturerList.displayName = 'ManufacturerList';
 
 export default ManufacturerList;

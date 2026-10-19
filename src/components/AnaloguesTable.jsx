@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 
-const AnaloguesTable = () => {
+const AnaloguesTable = forwardRef((props, ref) => {
   const { analogues, selectedBrand, loading, error } = useSelector((state) => state.parts);
 
   if (!selectedBrand) {
@@ -56,7 +56,7 @@ const AnaloguesTable = () => {
   const flattenedData = flattenAnalogues(analogues);
 
   return (
-    <div className="card">
+    <div id="analogues-section" ref={ref} className="card">
       <div className="card-body">
         <h5 className="card-title">
           Этап 2: Аналоги и предложения для {selectedBrand}
@@ -139,6 +139,8 @@ const AnaloguesTable = () => {
       </div>
     </div>
   );
-};
+});
+
+AnaloguesTable.displayName = 'AnaloguesTable';
 
 export default AnaloguesTable;
