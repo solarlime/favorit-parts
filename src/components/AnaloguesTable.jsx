@@ -18,10 +18,8 @@ const AnaloguesTable = forwardRef((props, ref) => {
           result.push({
             brand: item.brand,
             name: item.name,
-            number: item.number,
             price: warehouse.price,
             stock: warehouse.stock,
-            warehouse: warehouse.id,
             own: warehouse.own,
             notRefund: warehouse.notRefund || item.notRefund,
           });
@@ -36,10 +34,8 @@ const AnaloguesTable = forwardRef((props, ref) => {
               result.push({
                 brand: analogue.brand,
                 name: analogue.name,
-                number: analogue.number,
                 price: warehouse.price,
                 stock: warehouse.stock,
-                warehouse: warehouse.id,
                 own: warehouse.own,
                 notRefund: warehouse.notRefund || analogue.notRefund,
                 isAnalogue: true,
@@ -89,8 +85,6 @@ const AnaloguesTable = forwardRef((props, ref) => {
                 <tr>
                   <th>Производитель</th>
                   <th>Наименование</th>
-                  <th>Номер</th>
-                  <th>Склад</th>
                   <th>Цена</th>
                   <th>Остаток</th>
                   <th>Статус</th>
@@ -106,13 +100,6 @@ const AnaloguesTable = forwardRef((props, ref) => {
                       {item.brand}
                     </td>
                     <td>{item.name}</td>
-                    <td>{item.number}</td>
-                    <td>
-                      {item.own && (
-                        <span className="badge bg-success me-1">Наш склад</span>
-                      )}
-                      {item.warehouse}
-                    </td>
                     <td>{item.price ? `${item.price} ₽` : '-'}</td>
                     <td>
                       <span className={item.stock > 0 ? 'text-success' : 'text-danger'}>
