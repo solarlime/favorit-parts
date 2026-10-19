@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedBrand, fetchAnalogues } from '../store/partsSlice';
 
-const ManufacturerList = forwardRef(({ onBrandSelect }, ref) => {
+const ManufacturerList = ({ onBrandSelect, ref }) => {
   const dispatch = useDispatch();
   const { manufacturers, loading, number } = useSelector((state) => state.parts);
 
@@ -48,8 +48,6 @@ const ManufacturerList = forwardRef(({ onBrandSelect }, ref) => {
       </div>
     </div>
   );
-});
-
-ManufacturerList.displayName = 'ManufacturerList';
+};
 
 export default ManufacturerList;

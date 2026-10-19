@@ -1,7 +1,7 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
-const AnaloguesTable = forwardRef((props, ref) => {
+const AnaloguesTable = ({ ref }) => {
   const { analogues, selectedBrand, loading, error } = useSelector((state) => state.parts);
 
   if (!selectedBrand) {
@@ -126,8 +126,6 @@ const AnaloguesTable = forwardRef((props, ref) => {
       </div>
     </div>
   );
-});
-
-AnaloguesTable.displayName = 'AnaloguesTable';
+};
 
 export default AnaloguesTable;
