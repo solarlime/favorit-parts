@@ -11,13 +11,19 @@ function App() {
 
   const scrollToManufacturers = () => {
     if (manufacturersSectionRef.current) {
-      manufacturersSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      manufacturersSectionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     }
   };
 
   const scrollToAnalogues = () => {
     if (analoguesSectionRef.current) {
-      analoguesSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      analoguesSectionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     }
   };
 
@@ -28,7 +34,10 @@ function App() {
           <div className="col-12">
             <h1 className="mb-4">Поиск автозапчастей и аналогов</h1>
             <ManufacturerSearch onSearchComplete={scrollToManufacturers} />
-            <ManufacturerList ref={manufacturersSectionRef} onBrandSelect={scrollToAnalogues} />
+            <ManufacturerList
+              ref={manufacturersSectionRef}
+              onBrandSelect={scrollToAnalogues}
+            />
             <AnaloguesTable ref={analoguesSectionRef} />
           </div>
         </div>

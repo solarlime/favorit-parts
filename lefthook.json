@@ -1,0 +1,16 @@
+{
+  "pre-commit": {
+    "jobs": [
+      {
+        "name": "Run ESLint",
+        "run": "npx eslint --fix {staged_files}",
+        "stage_fixed": true
+      },
+      {
+        "name": "Run Prettier",
+        "run": "npx prettier --write {staged_files}",
+        "stage_fixed": true
+      }
+    ]
+  }
+}
