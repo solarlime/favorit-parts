@@ -1,10 +1,11 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedBrand, fetchAnalogues } from '../store/partsSlice';
 
 const ManufacturerList = ({ onBrandSelect, ref }) => {
   const dispatch = useDispatch();
-  const { manufacturers, loading, number } = useSelector((state) => state.parts);
+  const { manufacturers, loading, number } = useSelector(
+    (state) => state.parts
+  );
 
   const handleSelectBrand = async (brand) => {
     dispatch(setSelectedBrand(brand));
@@ -35,7 +36,7 @@ const ManufacturerList = ({ onBrandSelect, ref }) => {
               onClick={() => handleSelectBrand(item.brand)}
               disabled={loading}
             >
-              <div>
+              <div className="text-start">
                 <strong>{item.brand}</strong>
                 <div className="text-muted small">{item.name}</div>
               </div>

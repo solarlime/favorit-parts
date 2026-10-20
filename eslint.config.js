@@ -16,6 +16,9 @@ export default defineConfig([
       reactRefresh.configs.vite,
       prettierConfig,
     ],
+    rules: {
+      'no-irregular-whitespace': 'off',
+    },
     plugins: {
       prettier,
     },

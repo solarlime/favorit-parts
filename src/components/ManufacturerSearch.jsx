@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setNumber, clearResults, fetchManufacturers } from '../store/partsSlice';
+import {
+  setNumber,
+  clearResults,
+  fetchManufacturers,
+} from '../store/partsSlice';
 
 const ManufacturerSearch = ({ onSearchComplete }) => {
   const dispatch = useDispatch();
-  const { number, loading, error, manufacturers } = useSelector((state) => state.parts);
+  const { loading, error, manufacturers } = useSelector((state) => state.parts);
   const [localNumber, setLocalNumber] = useState('');
-  const searchRef = useRef(null);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -36,7 +39,7 @@ const ManufacturerSearch = ({ onSearchComplete }) => {
   return (
     <div id="search-section" className="card mb-4">
       <div className="card-body">
-        <h5 className="card-title">Этап 1: Поиск производителей</h5>
+        <h5 className="card-title">Поиск производителей</h5>
         <form onSubmit={handleSearch}>
           <div className="mb-3">
             <label htmlFor="partNumber" className="form-label">
@@ -52,7 +55,7 @@ const ManufacturerSearch = ({ onSearchComplete }) => {
               disabled={loading}
             />
           </div>
-          <div className="d-flex gap-2">
+          <div className="d-flex gap-2 justify-content-center">
             <button
               type="submit"
               className="btn btn-primary"

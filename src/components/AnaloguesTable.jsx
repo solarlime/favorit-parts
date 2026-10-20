@@ -1,8 +1,9 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 const AnaloguesTable = ({ ref }) => {
-  const { analogues, selectedBrand, loading, error } = useSelector((state) => state.parts);
+  const { analogues, selectedBrand, loading, error } = useSelector(
+    (state) => state.parts
+  );
 
   if (!selectedBrand) {
     return null;
@@ -55,7 +56,7 @@ const AnaloguesTable = ({ ref }) => {
     <div id="analogues-section" ref={ref} className="card">
       <div className="card-body">
         <h5 className="card-title">
-          Этап 2: Аналоги и предложения для {selectedBrand}
+          Аналоги и предложения для {selectedBrand}
         </h5>
 
         {loading && (
@@ -80,13 +81,13 @@ const AnaloguesTable = ({ ref }) => {
 
         {!loading && !error && flattenedData.length > 0 && (
           <div className="table-responsive">
-            <table className="table table-striped table-hover">
+            <table className="table table-striped table-hover text-start">
               <thead>
                 <tr>
                   <th>Производитель</th>
                   <th>Наименование</th>
                   <th>Цена</th>
-                  <th>Остаток</th>
+                  <th className="text-center">Остаток</th>
                   <th>Статус</th>
                 </tr>
               </thead>
@@ -95,26 +96,39 @@ const AnaloguesTable = ({ ref }) => {
                   <tr key={index}>
                     <td>
                       {item.isAnalogue && (
-                        <span className="badge bg-secondary me-1">Аналог</span>
+                        <>
+                          <span className="badge bg-secondary me-1">
+                            Аналог
+                          </span>
+                          <br />
+                        </>
                       )}
                       {item.brand}
                     </td>
                     <td>{item.name}</td>
-                    <td>{item.price ? `${item.price} ₽` : '-'}</td>
-                    <td>
-                      <span className={item.stock > 0 ? 'text-success' : 'text-danger'}>
+                    <td>{item.price ? `${item.price} ₽` : '-'}</td>
+                    <td className="text-center">
+                      <span
+                        className={
+                          item.stock > 0 ? 'text-success' : 'text-danger'
+                        }
+                      >
                         {item.stock}
                       </span>
                     </td>
                     <td>
                       {item.notRefund && (
-                        <span className="badge bg-warning text-dark">Невозврат</span>
+                        <span className="badge bg-warning text-dark">
+                          Невозврат
+                        </span>
                       )}
                       {!item.notRefund && item.stock > 0 && (
                         <span className="badge bg-success">В наличии</span>
                       )}
                       {!item.notRefund && item.stock === 0 && (
-                        <span className="badge bg-secondary">Нет в наличии</span>
+                        <span className="badge bg-secondary">
+                          Нет в наличии
+                        </span>
                       )}
                     </td>
                   </tr>

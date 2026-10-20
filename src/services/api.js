@@ -1,7 +1,10 @@
-const API_BASE_URL = 'http://api.favorit-parts.ru/hs/hsprice/';
+const API_BASE_URL = 'https://api.favorit-parts.ru/hs/hsprice/';
 
 // Для демонстрации используйте ваш реальный ключ
-const API_KEY = '00000000-0000-0000-0000-000000000001';
+const API_KEY =
+  import.meta.env.VITE_API_KEY ||
+  console.log('Using default API KEY') ||
+  '00000000-0000-0000-0000-000000000001';
 
 export const searchManufacturers = async (number) => {
   try {
