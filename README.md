@@ -1,16 +1,100 @@
-# React + Vite
+# Favorit Parts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Клиентское приложение на React для интеграции с API-сервисом поиска автозапчастей и аналогов.
 
-Currently, two official plugins are available:
+## Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Приложение обеспечивает двухэтапный процесс подбора номенлатуры:
 
-## React Compiler
+### Этап 1: Поиск производителей
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Ввод артикула (номера) автозапчасти
+- Автоматический поиск производителей (брендов), выпускающих деталь с данным артикулом
+- Отображение списка производителей для выбора
 
-## Expanding the ESLint configuration
+### Этап 2: Получение аналогов и предложений
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- При выборе производителя выполняется поиск аналогов и предложений
+- Отображение таблицы с информацией:
+  - Производитель
+  - Наименование
+  - Цена
+  - Остаток на складе
+  - Статус (в наличии / нет в наличии / невозврат)
+
+## Технологии
+
+- **React 19** - UI библиотека
+- **Redux Toolkit** - управление состоянием
+- **Bootstrap 5** - стилизация
+- **Vite** - сборщик проекта
+
+## Установка и запуск
+
+### Установка зависимостей
+
+```bash
+npm install
+```
+
+### Настройка API ключа
+
+Создайте файл `.env` в корне проекта:
+
+```env
+VITE_API_KEY=ваш_api_ключ
+```
+
+Если переменная не задана, будет использован ключ по умолчанию (для демонстрации).
+
+### Запуск в режиме разработки
+
+```bash
+npm run dev
+```
+
+Приложение будет доступно по адресу `http://localhost:5173/`
+
+### Сборка для продакшена
+
+```bash
+npm run build
+```
+
+### Предпросмотр продакшн-сборки
+
+```bash
+npm run preview
+```
+
+## Структура проекта
+
+```
+src/
+├── components/
+│   ├── AnaloguesTable.jsx       # Таблица аналогов и предложений
+│   ├── ManufacturerList.jsx    # Список производителей
+│   ├── ManufacturerSearch.jsx    # Форма поиска
+│   └── ScrollToTopButton.jsx    # Кнопка "В начало"
+├── store/
+│   ├── partsSlice.js            # Redux slice для управления состоянием
+│   └── store.js                 # Конфигурация Redux store
+├── services/
+│   └── api.js                   # API сервис для запросов
+├── App.jsx                      # Главный компонент приложения
+└── main.jsx                     # Точка входа
+```
+
+## Особенности UI/UX
+
+- **Якорные ссылки**: плавный скролл между секциями
+- **Кнопка "В начало"**: появляется при прокрутке более 100px
+- **Индикаторы загрузки**: отображение состояния загрузки при запросах
+- **Обработка ошибок**: понятные сообщения при ошибках API
+- **Адаптивный дизайн**: работает на различных размерах экранов
+
+## API
+
+Базовый URL: `https://api.favorit-parts.ru/hs/hsprice/`
+
+Документация API доступна по адресу: https://lk.favorit-parts.ru/static/wsprice.pdf
